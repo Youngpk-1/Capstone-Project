@@ -45,7 +45,7 @@ document.getElementById("search-btn").addEventListener("click", function () {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      if (data.status === 1) {
+      if (data.status) {
         var prodimg = data.product;
         console.log(prodimg);
         // Set product image
