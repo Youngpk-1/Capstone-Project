@@ -1,20 +1,3 @@
-// const requestOptions = {
-//   method: "GET",
-//   redirect: "follow",
-// };
-
-// fetch(
-//   "https://us.openfoodfacts.org/api/v0/product/$%7Bbarcode%7D.json",
-//   requestOptions
-// )
-//   .then((response) => response.text())
-//   .then(function (result) {
-//     console.log(result);
-//   })
-//   .catch((error) => console.error(error));
-
-// fetch(url).then(response);
-
 function getValue(id) {
   return document.getElementById(id).value;
 }
@@ -57,24 +40,54 @@ document.getElementById("search-btn").addEventListener("click", function () {
 
         // Set product name
         setText("product-name", prodimg.product_name || "Unknown Product");
-
         // Get nutrition values safely
-        var nutr = prodimg.nutriments;
-        var calories =
-          nutr["energy-kcal_100g"] !== undefined
-            ? nutr["energy-kcal_100g"] + " kcal"
-            : "N/A";
-        var protein =
-          nutr.proteins_100g !== undefined ? nutr.proteins_100g + " g" : "N/A";
-        var fat = nutr.fat_100g !== undefined ? nutr.fat_100g + " g" : "N/A";
-        var carbs =
-          nutr.carbohydrates_100g !== undefined
-            ? nutr.carbohydrates_100g + " g"
-            : "N/A";
-        // separate lines
+        var nutri = prodimg.nutriments || {};
+        // protein check
+        var protein;
+        if (nutri.protein) {
+          protein = nutri.protein + "g/100g";
+        } else {
+          protein = "0g";
+        }
+        // calories check
+        var calories;
+        if (nutri.energy_kcal) {
+          calories = nutri.energy_kcal + "kcal";
+        } else {
+          calories = "0kcal";
+        }
+        // sodium display only
+        var sodium;
+        if (nutri.sodium) {
+          sodium = nutri.sodium + "mg";
+        } else {
+          sodium = "0mg";
+        }
+        // fat check
+        var fat;
+        if (nutri.fat) {
+          fat = nutri.fat + "g";
+        } else {
+          fat = "0g";
+        }
+        // carbs check
+        var carbs;
+        if (nutri.carbs) {
+          carbs = nutri.carbs + "g";
+        } else {
+          carbs = "0g";
+        }
+        // cholesterol display only
+        var cholesterol;
+        if (nutri.cholesterol) {
+          cholesterol = nutri.cholesterol + "mg";
+        } else {
+          cholesterol = "0mg";
+        }
+
         setText(
           "nutrition-info",
-          `Calories: ${calories}\nProtein: ${protein}\nFat: ${fat}\nCarbs: ${carbs}`
+          `Calories: ${calories}\nProtein: ${protein}\nFat: ${fat}\nCarbs: ${carbs}\nSodium: ${sodium}\nCholesterol: ${cholesterol}`
         );
       } else {
         setText("error-message", "Product not found for that barcode.");
