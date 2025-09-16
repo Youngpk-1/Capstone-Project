@@ -1,9 +1,10 @@
-# 🎯 Capstone Project: [Your Project Name]
+# 🎯 Capstone Project: [Check the Facts!]
 
 ## 📖 About
 
 Describe your project here. What does your application do? What APIs and AI features does it integrate? Why is it useful or interesting?
 
+This project displays nutritional labels with amount it contains for each product. The API used was from Openfoodfacts.org. The AI features includes a input box that you can ask for example (give me a recipe for sugar cookies) and it will give you the recipe. Is is useful for getting health information that some may not think to look at and maybe help people understand what is actually in their food that is being consumed.
 ---
 
 ## 🚀 Getting Started
