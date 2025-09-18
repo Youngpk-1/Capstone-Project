@@ -84,7 +84,7 @@ document.getElementById("search-btn").addEventListener("click", function () {
         } else {
           cholesterol = "0mg";
         }
-
+        //response displayed if true
         setText(
           "nutrition-info",
           `Calories: ${calories}\nProtein: ${protein}\nFat: ${fat}\nCarbs: ${carbs}\nSodium: ${sodium}\nCholesterol: ${cholesterol}`
@@ -98,7 +98,7 @@ document.getElementById("search-btn").addEventListener("click", function () {
       setText("error-message", "Error fetching data. Please try again.");
     });
 });
-
+//Ai interaction
 var botReply = "";
 var userPrompt = "";
 document.getElementById("Ai-btn").addEventListener("click", function () {
