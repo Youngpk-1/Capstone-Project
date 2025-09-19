@@ -22,9 +22,9 @@ document.getElementById("search-btn").addEventListener("click", function () {
   setText("error-message", ""); // Clear any previous error
 
   //  API URL with out barcode already generates, user can now search any  food product
-  // var url = `https://us.openfoodfacts.org/api/v0/product/${barcode}.json`;
+  var url = `https://us.openfoodfacts.org/api/v0/product/${barcode}.json`;
 
-  var url = `https://us.openfoodfacts.org/api/v0/product/0078000082401.json`;
+  // var url = `https://us.openfoodfacts.org/api/v0/product/0078000082401.json`;
   // image of product here
 
   fetch(url)
