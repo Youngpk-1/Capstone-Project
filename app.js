@@ -22,7 +22,9 @@ document.getElementById("search-btn").addEventListener("click", function () {
   setText("error-message", ""); // Clear any previous error
 
   //  API URL with out barcode already generates, user can now search any  food product
-  var url = `https://us.openfoodfacts.org/api/v0/product/${barcode}.json`;
+  // var url = `https://us.openfoodfacts.org/api/v0/product/${barcode}.json`;
+
+  var url = `https://us.openfoodfacts.org/api/v0/product/0078000082401.json`;
   // image of product here
 
   fetch(url)
@@ -45,7 +47,7 @@ document.getElementById("search-btn").addEventListener("click", function () {
         // protein check
         var protein;
         if (nutri.protein) {
-          protein = nutri.protein + "g/100g";
+          protein = nutri.protein_100g + "g per 100g";
         } else {
           protein = "0g";
         }
@@ -66,14 +68,14 @@ document.getElementById("search-btn").addEventListener("click", function () {
         // fat check
         var fat;
         if (nutri.fat) {
-          fat = nutri.fat + "g";
+          fat = nutri.fat_100g + "g per 100g";
         } else {
           fat = "0g";
         }
         // carbs check
         var carbs;
         if (nutri.carbs) {
-          carbs = nutri.carbs + "g";
+          carbs = nutri.carbs_100g + "g per 100g";
         } else {
           carbs = "0g";
         }
@@ -89,10 +91,12 @@ document.getElementById("search-btn").addEventListener("click", function () {
           "nutrition-info",
           `Calories: ${calories}\nProtein: ${protein}\nFat: ${fat}\nCarbs: ${carbs}\nSodium: ${sodium}\nCholesterol: ${cholesterol}`
         );
+        // product error checking
       } else {
         setText("error-message", "Product not found for that barcode.");
       }
     })
+    // catch error checking
     .catch((error) => {
       console.error("Fetch error:", error);
       setText("error-message", "Error fetching data. Please try again.");
